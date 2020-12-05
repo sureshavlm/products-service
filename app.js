@@ -8,6 +8,14 @@ app.listen(port, () => {
 	console.log('App running on port %s', port);
 });
 
+app.use(function(req, res, next) {
+    res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type, Accept,Authorization,Origin");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+    next();
+  });
+
 app.get('/query', (req, res) => {
 	res.json([
 	{
